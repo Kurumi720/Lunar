@@ -34,3 +34,4 @@ local Window = Rayfield:CreateWindow({
     }
  })
  test
+ print
