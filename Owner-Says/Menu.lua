@@ -58,7 +58,20 @@ local Window = Rayfield:CreateWindow({
    Increment = 1,
    Suffix = "Height",
    CurrentValue = 10,
-   Flag = "Slider3", -- 可能aimbot idk
+   Flag = "Slider4", -- 可能aimbot idk
    Callback = function(Value)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
+ })
+
+ local Slider = PlayerTab:CreateSlider({
+   Name = "Chat Spam",
+   Range = {10, 500},
+   Increment = 1,
+   Suffix = "Height",
+   CurrentValue = 10,
+   Flag = "Slider5", -- chat spam
+   Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
+ })
