@@ -51,14 +51,3 @@ local Window = Rayfield:CreateWindow({
      game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
     end,
  })
-
- local Slider = PlayerTab:CreateSlider({
-   Name = "Jump Height",
-   Range = {10, 500},
-   Increment = 1,
-   Suffix = "Height",
-   CurrentValue = 10,
-   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-   end,
