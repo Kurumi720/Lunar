@@ -53,7 +53,7 @@ local Window = Rayfield:CreateWindow({
  })
 
  local Slider = PlayerTab:CreateSlider({
-   Name = "Jump Height",
+   Name = "AimBot",
    Range = {10, 500},
    Increment = 1,
    Suffix = "Height",
