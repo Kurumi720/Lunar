@@ -1,9 +1,9 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Tutorial Script Hub",
-    LoadingTitle = "Tutorial Script Hub",
-    LoadingSubtitle = "by Rolo",
+    Name = "Lunar",
+    LoadingTitle = "Lunar",
+    LoadingSubtitle = ":3",
     ConfigurationSaving = {
        Enabled = true,
        FolderName = nil, -- Create a custom folder for your hub/game
@@ -36,20 +36,8 @@ local Window = Rayfield:CreateWindow({
     CurrentValue = 10,
     Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
-     game.Players.LocalPlayer.Character:SetAttribute("SpeedMultiplier", Value)
-    end,
- })
-
- local Slider = PlayerTab:CreateSlider({
-    Name = "Dash length",
-    Range = {10, 1000},
-    Increment = 1,
-    Suffix = "Length",
-    CurrentValue = 10,
-    Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-     game.Players.LocalPlayer.Character:SetAttribute("DashLength", Value)
-    end,
+     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (v)
+   end,
  })
 
  local Slider = PlayerTab:CreateSlider({
@@ -63,3 +51,14 @@ local Window = Rayfield:CreateWindow({
      game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
     end,
  })
+
+ local Slider = PlayerTab:CreateSlider({
+   Name = "Jump Height",
+   Range = {10, 500},
+   Increment = 1,
+   Suffix = "Height",
+   CurrentValue = 10,
+   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
