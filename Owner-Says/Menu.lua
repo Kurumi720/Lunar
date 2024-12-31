@@ -34,7 +34,7 @@ local Window = Rayfield:CreateWindow({
     Increment = 1,
     Suffix = "Speed",
     CurrentValue = 10,
-    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "Slider1", -- 移動速度的模塊
     Callback = function(Value)
      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (v)
    end,
@@ -46,7 +46,7 @@ local Window = Rayfield:CreateWindow({
     Increment = 1,
     Suffix = "Height",
     CurrentValue = 10,
-    Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "Slider3", -- 跳躍模塊
     Callback = function(Value)
      game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
     end,
@@ -58,7 +58,7 @@ local Window = Rayfield:CreateWindow({
    Increment = 1,
    Suffix = "Height",
    CurrentValue = 10,
-   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider3", -- 可能aimbot idk
    Callback = function(Value)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
