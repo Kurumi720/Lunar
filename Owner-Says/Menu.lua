@@ -77,12 +77,12 @@ local Window = Rayfield:CreateWindow({
  })
 
  local Slider = PlayerTab:CreateSlider({
-   Name = "telport",
+   Name = "nocilp",
    Range = {10, 500},
    Increment = 1,
    Suffix = "Height",
    CurrentValue = 10,
-   Flag = "Slider6", -- telport
+   Flag = "Slider6", -- no cilp
    Callback = function(Value)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
