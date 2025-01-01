@@ -75,3 +75,15 @@ local Window = Rayfield:CreateWindow({
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
  })
+
+ local Slider = PlayerTab:CreateSlider({
+   Name = "telport",
+   Range = {10, 500},
+   Increment = 1,
+   Suffix = "Height",
+   CurrentValue = 10,
+   Flag = "Slider6", -- telport
+   Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
+ })
