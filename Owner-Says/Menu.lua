@@ -5,7 +5,7 @@ local Window = Rayfield:CreateWindow({
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius",
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
@@ -22,7 +22,7 @@ local Window = Rayfield:CreateWindow({
       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
    },
 
-   KeySystem = false, -- Set this to true to use our key system
+   KeySystem = true, -- Set this to true to use our key system
    KeySettings = {
       Title = "Untitled",
       Subtitle = "Key System",
@@ -30,11 +30,11 @@ local Window = Rayfield:CreateWindow({
       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"Admin"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
- local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
+ local PlayerTab = Window:CreateTab("Blatant", 4483362458) -- Title, Image
 
  local Slider = PlayerTab:CreateSlider({
     Name = "WalkSpeed",
@@ -76,3 +76,33 @@ local Window = Rayfield:CreateWindow({
                 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(messages[i],"LocalPlayer")
             end,
          })
+ 
+ local Toggle = Tab:CreateToggle({
+   Name = "AimBot",
+   CurrentValue = false,
+   Flag = "Toggle1", -- AimBot模塊
+   Callback = function(Value)
+      Configuration.Aimbot = ImportedConfiguration["Aimbot"] or false
+      Configuration.OnePressAimingMode = ImportedConfiguration["OnePressAimingMode"] or false
+      Configuration.AimKey = ImportedConfiguration["AimKey"] or "RMB"
+      Configuration.AimMode = ImportedConfiguration["AimMode"] or "Camera"
+      Configuration.SilentAimMethods = ImportedConfiguration["SilentAimMethods"] or { "Mouse.Hit / Mouse.Target", "GetMouseLocation" }
+      Configuration.SilentAimChance = ImportedConfiguration["SilentAimChance"] or 100
+      Configuration.OffAimbotAfterKill = ImportedConfiguration["OffAimbotAfterKill"] or false
+      Configuration.AimPartDropdownValues = ImportedConfiguration["AimPartDropdownValues"] or { "Head", "HumanoidRootPart" }
+      Configuration.AimPart = ImportedConfiguration["AimPart"] or "HumanoidRootPart"
+      Configuration.RandomAimPart = ImportedConfiguration["RandomAimPart"] or false
+      
+      Configuration.UseOffset = ImportedConfiguration["UseOffset"] or false
+      Configuration.OffsetType = ImportedConfiguration["OffsetType"] or "Static"
+      Configuration.StaticOffsetIncrement = ImportedConfiguration["StaticOffsetIncrement"] or 10
+      Configuration.DynamicOffsetIncrement = ImportedConfiguration["DynamicOffsetIncrement"] or 10
+      Configuration.AutoOffset = ImportedConfiguration["AutoOffset"] or false
+      Configuration.MaxAutoOffset = ImportedConfiguration["MaxAutoOffset"] or 50
+      
+      Configuration.UseSensitivity = ImportedConfiguration["UseSensitivity"] or false
+      Configuration.Sensitivity = ImportedConfiguration["Sensitivity"] or 50
+      Configuration.UseNoise = ImportedConfiguration["UseNoise"] or false
+      Configuration.NoiseFrequency = ImportedConfiguration["NoiseFrequency"] or 50      
+   end,
+})
