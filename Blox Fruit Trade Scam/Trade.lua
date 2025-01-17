@@ -34,5 +34,4 @@ local Window = Rayfield:CreateWindow({
     }
  })
 
- -- 分頁
  local Tab = Window:CreateTab("Trade", 4483362458) -- Title, Image
