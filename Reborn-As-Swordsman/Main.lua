@@ -1,11 +1,11 @@
 local Rayfield = local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Rayfield Example Window",
+    Name = "Reborn-As-Swordsman",
     Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
     LoadingTitle = "Rayfield Interface Suite",
     LoadingSubtitle = "by Kurumi",
-    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+    Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
@@ -43,7 +43,7 @@ local Window = Rayfield:CreateWindow({
       game:GetService("ReplicatedStorage").Events.Game.Re_TrainPower:FireServer()
       wait(.00000000001)
    end
-
+end
 
  -- 分頁
  local Tab = Window:CreateTab("AutoFarm", 4483362458) -- Title, Image
@@ -54,7 +54,7 @@ local Window = Rayfield:CreateWindow({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-      _G.autoTap == Value
+      _G.autoTap = Value
       autoTap()
    end,
 })
