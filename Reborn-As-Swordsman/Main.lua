@@ -41,7 +41,7 @@ local Window = Rayfield:CreateWindow({
  function autoTap()
    while _G.autoTap == true do
       game:GetService("ReplicatedStorage").Events.Game.Re_TrainPower:FireServer()
-      wait(.00000000001)
+      wait(.0000000001)
    end
 end
 
