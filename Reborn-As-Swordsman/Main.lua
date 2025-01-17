@@ -58,3 +58,8 @@ end
       autoTap()
    end,
 })
+
+
+
+
+Rayfield:LoadConfiguration()
