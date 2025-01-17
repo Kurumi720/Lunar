@@ -1,10 +1,10 @@
 local Rayfield = local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Rayfield Example Window",
+    Name = "Lunar Trade Scam",
     Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
     LoadingTitle = "Rayfield Interface Suite",
-    LoadingSubtitle = "by Sirius",
+    LoadingSubtitle = "by LunarTeam",
     Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
     DisableRayfieldPrompts = false,
