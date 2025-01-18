@@ -105,22 +105,28 @@ local function onTradeEnd()
     end
 end
 
--- 禁用對方玩家的交易界面
+-- 使用 Remote 凍結對方玩家的交易界面
 local function freezeOtherPlayerTrade()
-    local otherCharacter = getOtherPlayerCharacter()
-    if otherCharacter then
-        -- 假設這裡有一個方法可以禁用交易界面
-        otherCharacter.TradeGui.Enabled = false
-    end
+   local otherCharacter = getOtherPlayerCharacter()
+   if otherCharacter then
+       local args = {
+           [1] = "freezeTrade",
+           [2] = otherCharacter.Name
+       }
+       game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
+   end
 end
 
--- 恢復對方玩家的交易界面
+-- 使用 Remote 恢復對方玩家的交易界面
 local function unfreezeOtherPlayerTrade()
-    local otherCharacter = getOtherPlayerCharacter()
-    if otherCharacter then
-        -- 假設這裡有一個方法可以啟用交易界面
-        otherCharacter.TradeGui.Enabled = true
-    end
+   local otherCharacter = getOtherPlayerCharacter()
+   if otherCharacter then
+       local args = {
+           [1] = "unfreezeTrade",
+           [2] = otherCharacter.Name
+       }
+       game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
+   end
 end
 
 -- 監聽交易開始的事件
