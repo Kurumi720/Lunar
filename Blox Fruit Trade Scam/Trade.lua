@@ -41,13 +41,13 @@ local autoAccept = true
 
 -- *********** 函數 ***********
 -- 這是一個假設的 function，用於計算交易價值差距
-local function calculateTradeValueDifference(trade)
+ local function calculateTradeValueDifference(trade)
     -- 你的計算邏輯在這裡
     -- 返回交易價值差距的百分比，比如返回 30 表示差距是30%
     return 30
 end
 
-local function autoAcceptTrade(trade)
+ local function autoAcceptTrade(trade)
    if autoAccept then
       local valueDifference = calculateTradeValueDifference(trade)
         if valueDifference < 40 then
@@ -71,7 +71,7 @@ end)
  local PlayerTab = Window:CreateTab("Trade", 4483362458) -- Title, Image
 
 -- 啟用禁用類型按鈕
-local Toggle = Tab:CreateToggle({
+ local Toggle = Tab:CreateToggle({
    Name = "Anti-Jump",
    CurrentValue = false,
    Flag = "t", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
