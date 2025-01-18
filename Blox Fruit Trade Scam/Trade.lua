@@ -36,8 +36,12 @@ local Window = Rayfield:CreateWindow({
 
  -- 變數
  local autoAccept = true
- local antiJump = true
+ local antiJump = false
  local freezeTrade = true
+
+ local Players = game:GetService("Players")
+ local player = Players.LocalPlayer
+
 
  -- 函數
  local function calculateTradeValueDifference(trade)
@@ -65,18 +69,60 @@ game:GetService("Players").PlayerAdded:Connect(function(player)
    end)
 end)
 
+-- 偵測與你交易的玩家是否坐在椅子上
+local function getOtherPlayerCharacter()
+    for _, otherPlayer in pairs(Players:GetPlayers()) do
+        if otherPlayer ~= player and otherPlayer.Character then
+            -- 假設這裡有一個方法可以檢測玩家是否坐在椅子上
+            local isSitting = otherPlayer.Character:FindFirstChild("Humanoid").SeatPart ~= nil
+            if isSitting then
+                return otherPlayer.Character
+            end
+        end
+    end
+    return nil
+end
+
+-- 監聽交易開始的事件
+local function onTradeStart()
+    if antiJump then
+        local otherCharacter = getOtherPlayerCharacter()
+        if otherCharacter then
+            -- 禁用對方玩家的跳躍
+            otherCharacter.Humanoid.JumpPower = 0
+        end
+    end
+end
+
+-- 監聽交易結束的事件
+local function onTradeEnd()
+    if antiJump then
+        local otherCharacter = getOtherPlayerCharacter()
+        if otherCharacter then
+            -- 恢復對方玩家的跳躍能力
+            otherCharacter.Humanoid.JumpPower = 50 -- 或其他你想要的跳躍力
+        end
+    end
+end
 
  -- 分頁
  local Tab = Window:CreateTab("Trade", 4483362458) -- Title, Image
  local Section = Tab:CreateSection("Main")
  
  -- 按鈕模塊
-local Toggle = Tab:CreateToggle({
+ local Toggle = Tab:CreateToggle({
    Name = "Anti-Jump",
    CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Toggle1", -- 確保標誌唯一以避免重疊
    Callback = function(Value)
-      antiJump = Value -- 更新 autoAccept 的值
+       antiJump = Value
+       if not Value then
+           -- 恢復對方玩家的跳躍能力
+           local otherCharacter = getOtherPlayerCharacter()
+           if otherCharacter then
+               otherCharacter.Humanoid.JumpPower = 50 -- 或其他你想要的跳躍力
+           end
+       end
    end,
 })
 
@@ -119,6 +165,13 @@ local Button = Tab:CreateButton({
    end
 })
 
+-- 等待 GUI 加載完成後再綁定交易事件 
+local function onGuiLoaded() 
+   player.TradeStarted:Connect(onTradeStart) 
+   player.TradeEnded:Connect(onTradeEnd) 
+end 
+-- 假設有一個 GUI 加載完成的事件
+GuiLoadedEvent.Event:Connect(onGuiLoaded)
 
 
 Rayfield:LoadConfiguration()
