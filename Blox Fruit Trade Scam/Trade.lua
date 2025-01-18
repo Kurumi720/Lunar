@@ -48,22 +48,22 @@ local function calculateTradeValueDifference(trade)
 end
 
 local function autoAcceptTrade(trade)
-    if autoAccept then
-        local valueDifference = calculateTradeValueDifference(trade)
+   if autoAccept then
+      local valueDifference = calculateTradeValueDifference(trade)
         if valueDifference < 40 then
-            local args = {
-                [1] = "accept"
-            }
-            game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
-        end
-    end
+         local args = {
+               [1] = "accept"
+         }
+         game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
+      end
+   end
 end
 
 -- 假設你有一個條件來判斷何時自動同意，比如玩家送出交易請求時。
 game:GetService("Players").PlayerAdded:Connect(function(player)
-    player.RequestedTrade:Connect(function(trade)
-        autoAcceptTrade(trade)
-    end)
+   player.RequestedTrade:Connect(function(trade)
+      autoAcceptTrade(trade)
+   end)
 end)
 
 
@@ -86,8 +86,7 @@ local Toggle = Tab:CreateToggle({
    CurrentValue = false,
    Flag = "ts", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-      getgenv() = Value
-      autoaccept()
+      autoAccept = Value -- 更新 autoAccept 的值
    end,
 })
 
