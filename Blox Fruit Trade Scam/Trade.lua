@@ -36,6 +36,8 @@ local Window = Rayfield:CreateWindow({
 
  -- 變數
  local autoAccept = true
+ local antiJump = true
+ local freezeTrade = true
 
  -- 函數
  local function calculateTradeValueDifference(trade)
@@ -47,8 +49,8 @@ end
  local function autoAcceptTrade(trade)
    if autoAccept then
       local valueDifference = calculateTradeValueDifference(trade)
-        if valueDifference < 40 then
-         local args = {
+         if valueDifference >= 0 and valueDifference <= 40 then
+           local args = {
             [1] = "accept"
          }
          game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
@@ -65,7 +67,7 @@ end)
 
 
  -- 分頁
- local Tab = Window:CreateTab("AutoFarm", 4483362458) -- Title, Image
+ local Tab = Window:CreateTab("Trade", 4483362458) -- Title, Image
 
  -- 按鈕
  local Toggle = Tab:CreateToggle({
@@ -74,6 +76,24 @@ end)
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
       autoAccept = Value -- 更新 autoAccept 的值
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Anti-Jump",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      antiJump = Value -- 更新 autoAccept 的值
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Freeze Trade",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      freezeTrade = Value -- 更新 autoAccept 的值
    end,
 })
 
