@@ -52,7 +52,7 @@ end
       local valueDifference = calculateTradeValueDifference(trade)
         if valueDifference < 40 then
          local args = {
-               [1] = "accept"
+            [1] = "accept"
          }
          game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
       end
