@@ -33,6 +33,38 @@ local Window = Rayfield:CreateWindow({
       Key = {"Admin"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
+-- *********** 變數 ***********
+local autoAccept = true
+
+
+
+
+-- *********** 函數 ***********
+-- 這是一個假設的 function，用於計算交易價值差距
+ local function calculateTradeValueDifference(trade)
+    -- 你的計算邏輯在這裡
+    -- 返回交易價值差距的百分比，比如返回 30 表示差距是30%
+    return 30
+end
+
+ local function autoAcceptTrade(trade)
+   if autoAccept then
+      local valueDifference = calculateTradeValueDifference(trade)
+        if valueDifference < 40 then
+         local args = {
+            [1] = "accept"
+         }
+         game:GetService("ReplicatedStorage").Remotes.TradeFunction:InvokeServer(unpack(args))
+      end
+   end
+end
+
+-- 假設你有一個條件來判斷何時自動同意，比如玩家送出交易請求時。
+game:GetService("Players").PlayerAdded:Connect(function(player)
+   player.RequestedTrade:Connect(function(trade)
+      autoAcceptTrade(trade)
+   end)
+end)
 
 
 -- *********** 分頁 ***********
@@ -68,3 +100,8 @@ local Window = Rayfield:CreateWindow({
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
+
+
+
+
+Rayfield:LoadConfiguration()
