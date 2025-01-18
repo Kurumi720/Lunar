@@ -3,7 +3,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
    Name = "Lunar Trade Scam",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Rayfield Interface Suite",
+   LoadingTitle = "Best Blox Fruit Trade Scam",
    LoadingSubtitle = "by Kurumi",
    Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
@@ -68,23 +68,24 @@ end)
 
  -- 分頁
  local Tab = Window:CreateTab("Trade", 4483362458) -- Title, Image
-
- -- 按鈕
- local Toggle = Tab:CreateToggle({
-   Name = "Auto Accept",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-      autoAccept = Value -- 更新 autoAccept 的值
-   end,
-})
-
+ local Section = Tab:CreateSection("Main")
+ 
+ -- 按鈕模塊
 local Toggle = Tab:CreateToggle({
    Name = "Anti-Jump",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
       antiJump = Value -- 更新 autoAccept 的值
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Accept",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      autoAccept = Value -- 更新 autoAccept 的值
    end,
 })
 
@@ -97,6 +98,26 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 
+local Button = Tab:CreateButton({
+   Name = "Start Trade Scam",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+ -- 分頁2
+ local Tab = Window:CreateTab("Settings", 4483362458) -- Title, Image
+ local Section = Tab:CreateSection("Main")
+ -- 按鈕模塊2
+ 
+ local ColorPicker = Tab:CreateColorPicker({
+   Name = "Color Picker",
+   Color = Color3.fromRGB(255,255,255),
+   Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+       print(Value)
+       -- The variable (Value) is a Color3fromRGB value based on which color is selected
+   end
+})
 
 
 
