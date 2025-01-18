@@ -37,7 +37,7 @@ local Window = Rayfield:CreateWindow({
  -- 變數
  local autoAccept = true
  local antiJump = false
- local freezeTrade = true
+ local freezeTrade = false
 
  local Players = game:GetService("Players")
  local player = Players.LocalPlayer
@@ -105,6 +105,39 @@ local function onTradeEnd()
     end
 end
 
+-- 禁用對方玩家的交易界面
+local function freezeOtherPlayerTrade()
+    local otherCharacter = getOtherPlayerCharacter()
+    if otherCharacter then
+        -- 假設這裡有一個方法可以禁用交易界面
+        otherCharacter.TradeGui.Enabled = false
+    end
+end
+
+-- 恢復對方玩家的交易界面
+local function unfreezeOtherPlayerTrade()
+    local otherCharacter = getOtherPlayerCharacter()
+    if otherCharacter then
+        -- 假設這裡有一個方法可以啟用交易界面
+        otherCharacter.TradeGui.Enabled = true
+    end
+end
+
+-- 監聽交易開始的事件
+local function onTradeStart()
+    if freezeTrade then
+        freezeOtherPlayerTrade()
+    end
+end
+
+-- 監聽交易結束的事件
+local function onTradeEnd()
+    if freezeTrade then
+        unfreezeOtherPlayerTrade()
+    end
+end
+
+
  -- 分頁
  local Tab = Window:CreateTab("Trade", 4483362458) -- Title, Image
  local Section = Tab:CreateSection("Main")
@@ -138,9 +171,12 @@ local Toggle = Tab:CreateToggle({
 local Toggle = Tab:CreateToggle({
    Name = "Freeze Trade",
    CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Toggle1", -- 確保標誌唯一以避免重疊
    Callback = function(Value)
-      freezeTrade = Value -- 更新 autoAccept 的值
+       freezeTrade = Value
+       if not Value then
+           unfreezeOtherPlayerTrade()
+       end
    end,
 })
 
