@@ -69,6 +69,7 @@ end)
 
 -- *********** 分頁 ***********
  local PlayerTab = Window:CreateTab("Trade", 4483362458) -- Title, Image
+ local Section = Tab:CreateSection("Main")
 
 -- 啟用禁用類型按鈕
  local Toggle = Tab:CreateToggle({
