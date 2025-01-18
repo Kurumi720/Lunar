@@ -81,16 +81,16 @@ end)
    end,
 })
 
-local Toggle = Tab:CreateToggle({
+ local Toggle = Tab:CreateToggle({
    Name = "Auto Accept",
    CurrentValue = false,
    Flag = "ts", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-
+      autoAccept = Value -- 更新 autoAccept 的值
    end,
 })
 
-local Toggle = Tab:CreateToggle({
+ local Toggle = Tab:CreateToggle({
    Name = "Freeze Trade",
    CurrentValue = false,
    Flag = "tse", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
